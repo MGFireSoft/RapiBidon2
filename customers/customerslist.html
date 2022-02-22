@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapi Bidon</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <script src="/rapibidon2/index.js"></script>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div id="topnav" class="item1">Header</div>
+      <div class="item2">
+        <div id="acaClientes">ACA VAN LOS CLIENTES</div>
+
+        <script>
+          (function mostrarclientesTest() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+              var myObj = JSON.parse(this.responseText);
+
+              var table = document.createElement("TABLE"); //CREO UN ELEMENTO TABLA
+              table.setAttribute("class", "table table-sm", "table-hover");
+              table.setAttribute("text-align", "align-middle");
+              table.setAttribute("background-color", "red");
+              const headers = [
+                "ID",
+                "NOMBRE",
+                "DIRECCION",
+                "TELEFONO",
+                "TIPO",
+                "VENTAS",
+                "TOTAL",
+                "ULT. VENTA",
+              ]; //HEADERS
+              var row = table.insertRow(-1);
+              for (var i = 0; i <= 7; i++) {
+                var headerCell = row.insertCell(-1);
+                headerCell.innerHTML = headers[i];
+                row.setAttribute("style", "FONT-WEIGHT : BOLD");
+              }
+
+              var mybody = table.createTBody();
+              mybody.setAttribute("ID", "myTable");
+
+              for (var i = 0; i < myObj.length; i++) {
+                //ROWS
+                row = table.insertRow(-1);
+
+                for (var j = 0; j < 8; j++) {
+                  //TD
+                  if (myObj[i][4] == "") {
+                    // Comprobar el campo " no definido"
+                    myObj[i][4] = "No definido";
+                  }
+                  if (myObj[i][8] == "") {
+                    myObj[i][8] = "NADA POR AQUI";
+                  }
+                  var cell = row.insertCell(-1);
+                  cell.innerHTML = myObj[i][j];
+                }
+                row.setAttribute(
+                  "onclick",
+                  "mostrarclienteprofile(" + myObj[i][0] + ")"
+                );
+                row.setAttribute("data-toggle", "tooltip");
+                row.setAttribute("title", "NOTAS: \n" + myObj[i][8]);
+                row.setAttribute("class", "pointer");
+                mybody.appendChild(row);
+              }
+
+              var dvTable = document.getElementById("acaClientes");
+              dvTable.innerHTML = "";
+              dvTable.appendChild(table);
+            };
+            xhttp.open("GET", "customersreq.php");
+            xhttp.send();
+          })();
+        </script>
+      </div>
+      <div class="item3">Footer</div>
+    </div>
+  </body>
+</html>
