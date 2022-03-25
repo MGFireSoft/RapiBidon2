@@ -4,7 +4,7 @@ $conexion = mysqli_connect("localhost", "root", "", "rapibidon") or
     die("Problemas con la conexión");
 
 // ETCH DATA
-$registros = mysqli_query($conexion, "SELECT id, name, dir1, dir2, tel1, tel2, comments
+$registros = mysqli_query($conexion, "SELECT id, name, dir1, dir2, tel1, tel2, email, obs
 FROM customers
 ") or die("Problemas en el select:" . mysqli_error($conexion));
 

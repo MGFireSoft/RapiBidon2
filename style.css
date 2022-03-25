@@ -31,8 +31,8 @@
 }
 
 .grid-container > .item2 {
-    background-color: rgb(216, 216, 216);
-    min-height: 200px;
+    background-color: rgb(255, 255, 255);
+    min-height: 300px;
   }
 
 .grid-container > .item3 {
@@ -63,4 +63,40 @@
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+}
+
+
+table, th, td {
+  border: 1px solid;
+}
+
+
+
+
+th,
+td {
+  border: px solid;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+table {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+tr {
+  background-color: #ffffff;
+}
+tr:nth-child(even) {
+  background-color: #f0f1f1;
+}
+
+th{
+  background-color: #919191;
+  text-align: center;
 }
